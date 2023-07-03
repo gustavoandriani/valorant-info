@@ -1,26 +1,83 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valorant API</title>
+  <title>Valorant Info</title>
 
-  <link rel="stylesheet" href="./css/style.css">
+  <!-- CUSTOM -->
+  <link rel="stylesheet" href="./css/style.css" />
 
-  <script src="./js/index.js"></script>
+  <script src="./js/api.js"></script>
 
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </head>
-<body onload="getData()">
-  <h1>Valorant INFOS</h1>
-  <div id="painel-agent">
-    <div id="painel-img-agent">
-      
-    </div>
-  </div>
-  <div id="box-agents">
-    <ul id="list-agents">
-      
-    </ul>
-  </div>
+<body onload="getAgents(), getSprays(), getRanks(), getMaps()">
+  <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-danger">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Valorant INFO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
+                    aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarID">
+                    <div class="navbar-nav">
+                        <a onclick="switchCategorie('agents')" class="nav-link active" aria-current="page" href="#">Agentes</a>
+                        <a onclick="switchCategorie('sprays')" class="nav-link active" aria-current="page" href="#">Sprays</a>
+                        <a onclick="switchCategorie('ranks')" class="nav-link active" aria-current="page" href="#">Ranks</a>
+                        <a onclick="switchCategorie('maps')" class="nav-link active" aria-current="page" href="#">Maps</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+  </header>
+  <main>
+    <section id="maps">
+      <div class="container">
+        <ul
+          id="list-maps"
+          style="display: flex; flex-wrap: wrap; list-style-type: none"
+        ></ul>
+      </div>
+    </section>
+
+    <section id="ranks">
+      <div class="container">
+        <ul id="list-ranks" style="display: flex; flex-wrap: wrap; list-style-type: none;">
+
+        </ul>
+      </div>
+    </section>
+
+    <section id="sprays">
+      <div class="container">
+        <ul id="list-sprays" style="display: flex; flex-wrap: wrap; list-style-type: none;">
+
+        </ul>
+      </div>
+    </section>
+
+    <section id="agents">
+      <div class="container">
+        <div id="painel-agent">
+          <div id="painel-img-agent">
+            
+          </div>
+        </div>
+        <div id="box-agents">
+          <ul id="list-agents">
+            
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
