@@ -122,15 +122,14 @@ function switchCategorie(id) {
   for (let i = 0; i < sectionsIds.length; i++) {
     const idSection = document.getElementById(sectionsIds[i])
     if(idSection.classList != 'd-none') {
-      idSection.classList.remove('d-block')
       idSection.classList.add('d-none')
     } else {}
   }
   if(categorie.classList == 'd-none') {
-    categorie.classList.add('d-block')
     categorie.classList.remove('d-none')
+    categorie.classList.add('d-block')
   } else {
-    categorie.classList.add('d-none')
     categorie.classList.remove('d-block')
   }
+  
 }
