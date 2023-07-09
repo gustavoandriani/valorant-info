@@ -60,6 +60,7 @@ function getRanks() {
   fetch('https://valorant-api.com/v1/competitivetiers')
   .then(response => response.json())
   .then(ranks => {
+    console.log(ranks.data[4].tiers)
     ranks.data[4].tiers.forEach(element => {
       if(element != ranks.data[4].tiers[1] && element != ranks.data[4].tiers[2]) {
         const listRanks = document.getElementById('list-ranks')
@@ -104,12 +105,32 @@ function getMaps() {
   })
 }
 
+function getGuns() {
+  fetch('https://valorant-api.com/v1/weapons')
+  .then(response => response.json()
+  .then(guns => {
+    console.log(guns.data)
+    guns.data.forEach(element => {
+      
+    })
+  }))
+}
+
 function switchCategorie(id) {
   const categorie = document.getElementById(id)
-  var sections = document.getElementsByTagName('section')
-  for (var i = 0; i < sections.length; i++) {
-    sections[i].style.display = 'none';
+  const sectionsIds = ["maps", "agents", "ranks", "sprays"]
+  for (let i = 0; i < sectionsIds.length; i++) {
+    const idSection = document.getElementById(sectionsIds[i])
+    if(idSection.classList != 'd-none') {
+      idSection.classList.remove('d-block')
+      idSection.classList.add('d-none')
+    } else {}
   }
-  categorie.style.display = 'block'
-
+  if(categorie.classList == 'd-none') {
+    categorie.classList.add('d-block')
+    categorie.classList.remove('d-none')
+  } else {
+    categorie.classList.add('d-none')
+    categorie.classList.remove('d-block')
+  }
 }

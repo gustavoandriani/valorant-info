@@ -12,30 +12,56 @@
 
   <!-- TAILWINDCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#101224',
+            box: '#181a35',
+          },
+          boxShadow: {
+            'default': 'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;',
+          }
+        }
+      }
+    }
+  </script>
 </head>
 <body onload="getAgents(), getSprays(), getRanks(), getMaps()">
   <header>
     <nav class="m-2 md:ml-12 md:mr-12 md:m-4 grid grid-cols-3">
       <div class="w-auto h-12 col-span-2">
-        <a class="text-2xl font-extrabold hover:text-emerald-600 transition-all" href="">Valorant INFO</a>
+        <a class="text-2xl font-extrabold hover:text-red-700 transition-all" href="">Valorant INFO</a>
       </div>
       
     </nav>
   </header>
-  <main>
-    <section>
-      <div class="w-auto h-auto md:mt-2 md:ml-48 md:mr-48 grid grid-cols-2 gap-4">
-        <div class="h-32 col-span-2 bg-green-500"></div>
-        <div class="h-16 bg-green-500"></div>
-        <div class="h-16 bg-green-500"></div>
-        <div class="h-16 bg-green-500"></div>
-        <div class="h-16 bg-green-500"></div>
-        <div class="h-16 bg-green-500"></div>
-        <div class="h-16 bg-green-500"></div>
+  <main onload="getRanks(); getMaps(); getAgents(); getSprays(); getGuns()">
+    <section class="mb-12">
+      <div class="w-auto h-auto md:mt-2 md:ml-48 md:mr-48 grid grid-cols-5 gap-4">
+        <div class="h-32 col-span-5 bg-green-500">
+          <h2 class="text-end font-bold">ADSense</h2>
+        </div>
+        <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-110 shadow-default" style="background-image: url('src/img/maps-icon.png');" onclick="switchCategorie('maps')">
+          <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Mapas</h2>
+        </div>
+        <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('src/img/agentes-icon.png');" onclick="switchCategorie('agents')">
+          <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Agentes</h2>
+        </div>
+        <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png');" onclick="switchCategorie('ranks')">
+          <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Ranks</h2>
+        </div>
+        <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/sprays/5297a45a-4ca0-dff0-1229-4bb9e851d924/animation.gif');" onclick="switchCategorie('sprays')">
+          <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Sprays</h2>
+        </div>
+        <div class="bg-no-repeat bg-center bg-contain m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/weaponskinchromas/db4461e5-40dd-1173-3b64-e5836f92f4dd/fullrender.png');" onclick="">
+          <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Armas</h2>
+        </div>
       </div>
     </section>
-    <section id="maps" class="valorant-things">
-      <div class="container">
+    <section id="maps" class="d-none">
+      <div class="m-auto">
         <ul
           id="list-maps"
           style="display: flex; flex-wrap: wrap; list-style-type: none"
@@ -43,23 +69,7 @@
       </div>
     </section>
 
-    <section id="ranks" class="valorant-things">
-      <div class="container">
-        <ul id="list-ranks" style="display: flex; flex-wrap: wrap; list-style-type: none;">
-
-        </ul>
-      </div>
-    </section>
-
-    <section id="sprays" class="valorant-things">
-      <div class="container">
-        <ul id="list-sprays" style="display: flex; flex-wrap: wrap; list-style-type: none;">
-
-        </ul>
-      </div>
-    </section>
-
-    <section id="agents" class="valorant-things">
+    <section id="agents" class="d-none">
       <div class="container">
         <div id="painel-agent">
           <div id="painel-img-agent">
@@ -73,6 +83,23 @@
         </div>
       </div>
     </section>
+
+    <section id="ranks" class="d-none">
+      <div class="container">
+        <ul id="list-ranks" style="display: flex; flex-wrap: wrap; list-style-type: none;">
+
+        </ul>
+      </div>
+    </section>
+
+    <section id="sprays" class="d-none">
+      <div class="container">
+        <ul id="list-sprays" style="display: flex; flex-wrap: wrap; list-style-type: none;">
+
+        </ul>
+      </div>
+    </section>
+
   </main>
 </body>
 </html>
