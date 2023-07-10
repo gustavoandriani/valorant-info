@@ -25,15 +25,9 @@ function getAgents() {
           const nameAgent = document.createElement('p')
           nameAgent.textContent = element.displayName
           itemAgent.appendChild(nameAgent)
-        } else {
-          console.log('Sova ruim')
-        }
+        } else {}
       });
     })
-    .catch(error => {
-      // Lide com erros
-      console.error(error);
-    });
 }
 
 function getSprays() {
@@ -60,7 +54,6 @@ function getRanks() {
   fetch('https://valorant-api.com/v1/competitivetiers')
   .then(response => response.json())
   .then(ranks => {
-    console.log(ranks.data[4].tiers)
     ranks.data[4].tiers.forEach(element => {
       if(element != ranks.data[4].tiers[1] && element != ranks.data[4].tiers[2]) {
         const listRanks = document.getElementById('list-ranks')
@@ -98,9 +91,7 @@ function getMaps() {
         itemMap.appendChild(nameMap)
         itemMap.appendChild(imageMap)
         listMaps.appendChild(itemMap)
-      } else {
-        console.log('The Range')
-      }
+      } else {}
     })
   })
 }
@@ -111,14 +102,25 @@ function getGuns() {
   .then(guns => {
     console.log(guns.data)
     guns.data.forEach(element => {
+      const listGuns = document.getElementById('list-guns')
+
+      const itemGun = document.createElement('div')
+      itemGun.style.backgroundImage = "url(" + element.displayIcon + ")"
+      itemGun.classList.add('m-2', 'bg-contain', 'bg-center', 'bg-no-repeat', 'w-48', 'h-48', 'bg-red-500', 'rounded-xl', 'text-center', 'cursor-pointer', 'hover:bg-red-600')
+
+      const nameGun = document.createElement('span')
+      nameGun.textContent = element.displayName
+      nameGun.classList.add('text-lg')
       
+      itemGun.appendChild(nameGun)
+      listGuns.appendChild(itemGun)
     })
   }))
 }
 
 function switchCategorie(id) {
   const categorie = document.getElementById(id)
-  const sectionsIds = ["maps", "agents", "ranks", "sprays"]
+  const sectionsIds = ["maps", "agents", "ranks", "sprays", "guns"]
   for (let i = 0; i < sectionsIds.length; i++) {
     const idSection = document.getElementById(sectionsIds[i])
     if(idSection.classList != 'd-none') {

@@ -28,7 +28,7 @@
     }
   </script>
 </head>
-<body onload="getAgents(), getSprays(), getRanks(), getMaps()">
+<body onload="getAgents(), getSprays(), getRanks(), getMaps(), getGuns()">
   <header>
     <nav class="m-2 md:ml-12 md:mr-12 md:m-4 grid grid-cols-3">
       <div class="w-auto h-12 col-span-2">
@@ -37,7 +37,7 @@
       
     </nav>
   </header>
-  <main onload="getRanks(); getMaps(); getAgents(); getSprays(); getGuns()">
+  <main>
     <section class="mb-12">
       <div class="w-auto h-auto md:mt-2 md:ml-48 md:mr-48 grid grid-cols-5 gap-4">
         <div class="h-32 col-span-5 bg-green-500">
@@ -55,7 +55,7 @@
         <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/sprays/5297a45a-4ca0-dff0-1229-4bb9e851d924/animation.gif');" onclick="switchCategorie('sprays')">
           <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Sprays</h2>
         </div>
-        <div class="bg-no-repeat bg-center bg-contain m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/weaponskinchromas/db4461e5-40dd-1173-3b64-e5836f92f4dd/fullrender.png');" onclick="">
+        <div class="bg-no-repeat bg-center bg-contain m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/weaponskinchromas/db4461e5-40dd-1173-3b64-e5836f92f4dd/fullrender.png');" onclick="switchCategorie('guns')">
           <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Armas</h2>
         </div>
       </div>
@@ -97,6 +97,12 @@
         <ul id="list-sprays" style="display: flex; flex-wrap: wrap; list-style-type: none;">
 
         </ul>
+      </div>
+    </section>
+
+    <section id="guns" class="d-none">
+      <div id="list-guns" class="w-fit mx-auto grid grid-cols-6">
+
       </div>
     </section>
 
