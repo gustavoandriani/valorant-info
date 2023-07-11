@@ -43,43 +43,40 @@
         <div class="h-32 col-span-5 bg-green-500">
           <h2 class="text-end font-bold">ADSense</h2>
         </div>
-        <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-110 shadow-default" style="background-image: url('src/img/maps-icon.png');" onclick="switchCategorie('maps')">
+        <div class="bg-no-repeat bg-center bg-cover m-auto col-span-5 md:col-span-1 w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-110 shadow-default" style="background-image: url('src/img/maps-icon.png');" onclick="switchCategorie('maps')">
           <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Mapas</h2>
         </div>
-        <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('src/img/agentes-icon.png');" onclick="switchCategorie('agents')">
+
+        <div class="bg-no-repeat bg-center bg-cover m-auto col-span-5 md:col-span-1 w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-110 shadow-default" style="background-image: url('src/img/agentes-icon.png');" onclick="switchCategorie('agents')">
           <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Agentes</h2>
         </div>
-        <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png');" onclick="switchCategorie('ranks')">
+
+        <div class="bg-no-repeat bg-center bg-cover m-auto col-span-5 md:col-span-1 w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-110 shadow-default" style="background-image: url('https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png');" onclick="switchCategorie('ranks')">
           <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Ranks</h2>
         </div>
-        <div class="bg-no-repeat bg-center bg-cover m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/sprays/5297a45a-4ca0-dff0-1229-4bb9e851d924/animation.gif');" onclick="switchCategorie('sprays')">
+
+        <div class="bg-no-repeat bg-center bg-cover m-auto col-span-5 md:col-span-1 w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-110 shadow-default" style="background-image: url('https://media.valorant-api.com/sprays/5297a45a-4ca0-dff0-1229-4bb9e851d924/animation.gif');" onclick="switchCategorie('sprays')">
           <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Sprays</h2>
         </div>
-        <div class="bg-no-repeat bg-center bg-contain m-auto w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-125 shadow-default" style="background-image: url('https://media.valorant-api.com/weaponskinchromas/db4461e5-40dd-1173-3b64-e5836f92f4dd/fullrender.png');" onclick="switchCategorie('guns')">
+
+        <div class="bg-no-repeat bg-center bg-contain m-auto col-span-5 md:col-span-1 w-72 h-64 bg-box rounded-xl transition-all hover:cursor-pointer hover:scale-110 shadow-default" style="background-image: url('https://media.valorant-api.com/weaponskinchromas/db4461e5-40dd-1173-3b64-e5836f92f4dd/fullrender.png');" onclick="switchCategorie('guns')">
           <h2 class="text-center font-bold mt-48 w-auto bg-red-500">Armas</h2>
         </div>
       </div>
     </section>
     <section id="maps" class="d-none">
-      <div class="m-auto">
-        <ul
-          id="list-maps"
-          style="display: flex; flex-wrap: wrap; list-style-type: none"
-        ></ul>
+      <div id="list-maps" class="w-fit h-fit mx-auto grid grid-cols-2 md:grid-cols-6 gap-4 mx-auto">
+
       </div>
     </section>
 
     <section id="agents" class="d-none">
-      <div class="container">
-        <div id="painel-agent">
-          <div id="painel-img-agent">
-            
-          </div>
+      <div class="grid grid-cols-4 gap-4">
+        <div id="painel-agent" class="w-fit mx-auto col-span-4 md:col-span-2">
+          <div id="painel-img-agent" class="h-fit"></div>
         </div>
-        <div id="box-agents">
-          <ul id="list-agents">
-            
-          </ul>
+        <div id="list-agents" class="grid grid-cols-3 md:grid-cols-6 mr-5 col-span-4 md:col-span-2 gap-2">
+
         </div>
       </div>
     </section>

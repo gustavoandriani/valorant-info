@@ -5,15 +5,17 @@ function getAgents() {
       const listAgents = document.getElementById('list-agents')
       agents.data.forEach(element => {
         if(element.uuid !== "ded3520f-4264-bfed-162d-b080e2abccf9"){
-          const itemAgent = document.createElement('li')
-          itemAgent.classList.add('item-agent')
+          const itemAgent = document.createElement('div')
+          itemAgent.classList.add('bg-box', 'p-2' , 'h-fit', 'text-center', 'rounded-xl', 'cursor-pointer')
           itemAgent.classList.add(element.displayName)
           itemAgent.addEventListener('click', item => {
             const painelAgents = document.getElementById('painel-agent')
             painelAgents.style.backgroundImage = "url('" + element.background + "')"
+            painelAgents.classList.add('bg-center', 'bg-contain', 'bg-no-repeat', 'w-80', 'h-72', 'md:w-full', 'md:h-full')
 
             const imageAgents = document.getElementById('painel-img-agent')
             imageAgents.style.backgroundImage = "url('" + element.fullPortrait + "')"
+            imageAgents.classList.add('bg-center', 'bg-cover', 'w-80', 'h-72', 'md:w-full', 'md:h-full')
           })
           listAgents.appendChild(itemAgent)
           
@@ -78,13 +80,14 @@ function getMaps() {
     maps.data.forEach(element => {
       if(element != maps.data[11]) {
         const listMaps = document.getElementById('list-maps')
-        const itemMap = document.createElement('li')
-        itemMap.classList.add('item-map')
+        const itemMap = document.createElement('div')
+        itemMap.classList.add('item-map', 'bg-box', 'rounded-xl', 'md:w-48')
         itemMap.style.textAlign = 'center'
 
         const nameMap = document.createElement('p')
         nameMap.textContent = element.displayName
         const imageMap = document.createElement('img')
+        imageMap.classList.add('mx-auto')
         imageMap.src = element.displayIcon
         imageMap.style.width = '150px'
 
