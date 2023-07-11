@@ -41,7 +41,7 @@ function getAgents() {
 
             const imageAgents = document.getElementById('painel-img-agent')
             imageAgents.style.backgroundImage = "url('" + element.fullPortrait + "')"
-            imageAgents.classList.add('bg-center', 'bg-cover', 'w-80', 'h-72', 'md:w-full', 'md:h-full')
+            imageAgents.classList.add('bg-center', 'bg-cover', 'w-full', 'h-full')
           })
           listAgents.appendChild(itemAgent)
           
@@ -91,15 +91,25 @@ function getSprays() {
     .then(sprays => {
       sprays.data.forEach(element => {
         const listSprays = document.getElementById('list-sprays')
-        const itemSpray = document.createElement('li')
-        itemSpray.classList.add('item-spray')
+        const itemSpray = document.createElement('div')
 
         const imageSpray = document.createElement('img')
-        imageSpray.classList.add('spray')
-        imageSpray.src = element.fullIcon
+        imageSpray.classList.add('mx-auto')
+        if (element.animationGif != null) {
+          imageSpray.src = element.animationGif
+        } else if (element.fullIcon != null) {
+          imageSpray.src = element.fullIcon
+        } else {
+          imageSpray.src = element.displayIcon
+        }
         imageSpray.style.width = '150px'
+
+        const nameSpray = document.createElement('p')
+        nameSpray.textContent = element.displayName
+        nameSpray.classList.add('text-center')
         
         itemSpray.appendChild(imageSpray)
+        itemSpray.appendChild(nameSpray)
         listSprays.appendChild(itemSpray)
       })
     });
@@ -115,9 +125,42 @@ function getGuns() {
 
       const itemGun = document.createElement('div')
       itemGun.style.backgroundImage = "url(" + element.displayIcon + ")"
-      itemGun.classList.add('m-2', 'bg-contain', 'bg-center', 'bg-no-repeat', 'w-48', 'h-48', 'bg-red-500', 'rounded-xl', 'text-center', 'cursor-pointer', 'hover:bg-red-600')
+      itemGun.classList.add('bg-contain', 'bg-center', 'bg-no-repeat', 'h-32', 'md:w-72', 'md:h-48', 'bg-red-500', 'rounded-xl', 'text-center', 'cursor-pointer', 'hover:bg-red-600', 'md:mx-auto')
+      itemGun.addEventListener('click', item => {
+        const painelGuns = document.getElementById('painel-guns')
+        const imageGuns = document.createElement('img')
+        imageGuns.src = element.displayIcon
+        imageGuns.classList.add('mx-auto')
+        
+        element.skins.forEach(skin => {
+          const listSkinsGuns = document.getElementById('list-skins-guns')
+          const itemSkinsGuns = document.createElement('div')
+          itemSkinsGuns.classList.add('w-full')
+          
+          const imageSkinGun = document.createElement('img')
+          if(skin.displayIcon != null) {
+            imageSkinGun.src = skin.displayIcon
+          } else if(skin.chromas.displayIcon != null) {
+            skin.chromas.forEach(skinsChroma => {
+              imageSkinGun.src = skinsChroma.displayIcon
+            })
+          } else {
+            skin.levels.forEach(skinsLevels => {
+              if(skinsLevels)
+              imageSkinGun.src = skinsLevels.displayIcon
+            })
+          }
+          
+          
 
-      const nameGun = document.createElement('span')
+          itemSkinsGuns.appendChild(imageSkinGun)
+          listSkinsGuns.appendChild(itemSkinsGuns)
+        })
+
+        painelGuns.appendChild(imageGuns)
+      })
+
+      const nameGun = document.createElement('p')
       nameGun.textContent = element.displayName
       nameGun.classList.add('text-lg')
       
