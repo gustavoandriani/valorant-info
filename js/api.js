@@ -1,3 +1,29 @@
+function getMaps() {
+  fetch('https://valorant-api.com/v1/maps')
+  .then(response => response.json())
+  .then(maps => {
+    maps.data.forEach(element => {
+      if(element != maps.data[11]) {
+        const listMaps = document.getElementById('list-maps')
+        const itemMap = document.createElement('div')
+        itemMap.classList.add('item-map', 'bg-box', 'rounded-xl', 'md:w-48')
+        itemMap.style.textAlign = 'center'
+
+        const nameMap = document.createElement('p')
+        nameMap.textContent = element.displayName
+        const imageMap = document.createElement('img')
+        imageMap.classList.add('mx-auto')
+        imageMap.src = element.displayIcon
+        imageMap.style.width = '150px'
+
+        itemMap.appendChild(nameMap)
+        itemMap.appendChild(imageMap)
+        listMaps.appendChild(itemMap)
+      } else {}
+    })
+  })
+}
+
 function getAgents() {
   fetch('https://valorant-api.com/v1/agents')
     .then(response => response.json())
@@ -6,7 +32,7 @@ function getAgents() {
       agents.data.forEach(element => {
         if(element.uuid !== "ded3520f-4264-bfed-162d-b080e2abccf9"){
           const itemAgent = document.createElement('div')
-          itemAgent.classList.add('bg-box', 'p-2' , 'h-fit', 'text-center', 'rounded-xl', 'cursor-pointer')
+          itemAgent.classList.add('bg-box', 'p-2' , 'h-fit', 'text-center', 'rounded-xl', 'cursor-pointer', 'hover:bg-boxDark')
           itemAgent.classList.add(element.displayName)
           itemAgent.addEventListener('click', item => {
             const painelAgents = document.getElementById('painel-agent')
@@ -32,6 +58,33 @@ function getAgents() {
     })
 }
 
+function getRanks() {
+  fetch('https://valorant-api.com/v1/competitivetiers')
+  .then(response => response.json())
+  .then(ranks => {
+    ranks.data[4].tiers.forEach(element => {
+      if(element != ranks.data[4].tiers[1] && element != ranks.data[4].tiers[2]) {
+        const listRanks = document.getElementById('list-ranks')
+        const itemRank = document.createElement('div')
+        itemRank.classList.add('p-3','bg-box', 'rounded-xl')
+        
+        const nameRank = document.createElement('p')
+        nameRank.textContent = element.tierName
+        nameRank.classList.add('text-center')
+
+        const imageRank = document.createElement('img')
+        imageRank.src = element.largeIcon
+        imageRank.style.width = '150px'
+        imageRank.classList.add('mx-auto')
+
+        itemRank.appendChild(imageRank)
+        itemRank.appendChild(nameRank)
+        listRanks.appendChild(itemRank)
+      }
+    })
+  })
+}
+
 function getSprays() {
   fetch('https://valorant-api.com/v1/sprays')
     .then(response => response.json())
@@ -50,53 +103,6 @@ function getSprays() {
         listSprays.appendChild(itemSpray)
       })
     });
-}
-
-function getRanks() {
-  fetch('https://valorant-api.com/v1/competitivetiers')
-  .then(response => response.json())
-  .then(ranks => {
-    ranks.data[4].tiers.forEach(element => {
-      if(element != ranks.data[4].tiers[1] && element != ranks.data[4].tiers[2]) {
-        const listRanks = document.getElementById('list-ranks')
-        const itemRank = document.createElement('li')
-        itemRank.classList.add('item-rank')
-
-        const imageRank = document.createElement('img')
-        imageRank.src = element.largeIcon
-        imageRank.style.width = '150px'
-
-        itemRank.appendChild(imageRank)
-        listRanks.appendChild(itemRank)
-      }
-    })
-  })
-}
-
-function getMaps() {
-  fetch('https://valorant-api.com/v1/maps')
-  .then(response => response.json())
-  .then(maps => {
-    maps.data.forEach(element => {
-      if(element != maps.data[11]) {
-        const listMaps = document.getElementById('list-maps')
-        const itemMap = document.createElement('div')
-        itemMap.classList.add('item-map', 'bg-box', 'rounded-xl', 'md:w-48')
-        itemMap.style.textAlign = 'center'
-
-        const nameMap = document.createElement('p')
-        nameMap.textContent = element.displayName
-        const imageMap = document.createElement('img')
-        imageMap.classList.add('mx-auto')
-        imageMap.src = element.displayIcon
-        imageMap.style.width = '150px'
-
-        itemMap.appendChild(nameMap)
-        itemMap.appendChild(imageMap)
-        listMaps.appendChild(itemMap)
-      } else {}
-    })
-  })
 }
 
 function getGuns() {
