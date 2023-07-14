@@ -53,9 +53,9 @@ function getAgents() {
           const nameAgent = document.createElement('p')
           nameAgent.textContent = element.displayName
           itemAgent.appendChild(nameAgent)
-        } else {}
+        }
       });
-    })
+    });
 }
 
 function getRanks() {
@@ -117,44 +117,65 @@ function getSprays() {
 
 function getGuns() {
   fetch('https://valorant-api.com/v1/weapons')
-  .then(response => response.json()
+  .then(response => response.json())
   .then(guns => {
     console.log(guns.data)
     guns.data.forEach(element => {
+      const standardGun = "Standard " + element.displayName
       const listGuns = document.getElementById('list-guns')
 
       const itemGun = document.createElement('div')
       itemGun.style.backgroundImage = "url(" + element.displayIcon + ")"
-      itemGun.classList.add('bg-contain', 'bg-center', 'bg-no-repeat', 'h-32', 'md:w-72', 'md:h-48', 'bg-red-500', 'rounded-xl', 'text-center', 'cursor-pointer', 'hover:bg-red-600', 'md:mx-auto')
+      itemGun.classList.add('bg-contain', 'bg-center', 'bg-no-repeat', 'h-32', 'md:w-full', 'md:h-48', 'bg-red-500', 'rounded-xl', 'text-center', 'cursor-pointer', 'hover:bg-red-600', 'md:mx-auto')
       itemGun.addEventListener('click', item => {
         const painelGuns = document.getElementById('painel-guns')
-        const imageGuns = document.createElement('img')
-        imageGuns.src = element.displayIcon
-        imageGuns.classList.add('mx-auto')
+        painelGuns.style.backgroundImage = "url(" + element.displayIcon + ")"
+        painelGuns.classList.add('w-full', 'h-36', 'md:h-48', 'p-10', 'bg-no-repeat', 'bg-center', 'bg-contain')
+
+        const listSkinsGuns = document.getElementById('list-skins-guns')
+        listSkinsGuns.remove()
+        const painelListGuns = document.getElementById('painel-list-guns')
+        const createdListSkinsGuns = document.createElement('div')
+        createdListSkinsGuns.classList.add('grid', 'md:grid-cols-6', 'grid-cols-1', 'gap-4')
+        createdListSkinsGuns.id = 'list-skins-guns'
+        painelListGuns.appendChild(createdListSkinsGuns)
         
         element.skins.forEach(skin => {
-          const listSkinsGuns = document.getElementById('list-skins-guns')
-          const itemSkinsGuns = document.createElement('div')
-          itemSkinsGuns.classList.add('w-full')
-          
-          const imageSkinGun = document.createElement('img')
           if(skin.displayIcon != null) {
-            imageSkinGun.src = skin.displayIcon
-          } else if(skin.chromas.displayIcon != null) {
-            skin.chromas.forEach(skinsChroma => {
-              imageSkinGun.src = skinsChroma.displayIcon
-            })
-          } else {
-            skin.levels.forEach(skinsLevels => {
-              if(skinsLevels)
-              imageSkinGun.src = skinsLevels.displayIcon
-            })
-          }
-          
-          
+            const itemSkinsGuns = document.createElement('div')
+            const imageSkinGun = document.createElement('img')
+            const nameSkinGun = document.createElement('p')
+            if(skin.displayName !== standardGun && skin.displayName !== "Random Favorite Skin") {
+              itemSkinsGuns.id = 'itemSkin'
+              itemSkinsGuns.classList.add('w-full', 'mb-5', 'p-5')
 
-          itemSkinsGuns.appendChild(imageSkinGun)
-          listSkinsGuns.appendChild(itemSkinsGuns)
+              nameSkinGun.classList.add('text-center')
+              console.log(standardGun)
+            
+              imageSkinGun.src = skin.displayIcon
+              nameSkinGun.textContent = skin.displayName
+
+              itemSkinsGuns.appendChild(nameSkinGun)
+              itemSkinsGuns.appendChild(imageSkinGun)
+              createdListSkinsGuns.appendChild(itemSkinsGuns)
+            } 
+            else {
+              skin.chromas.some(skinsChroma => {
+                if(skinsChroma.displayIcon != null) {
+                    imageSkinGun.src = skinsChroma.displayIcon
+                    return true
+                } else {
+                  skin.levels.some(skinsLevels => {
+                    if(skinsLevels.displayIcon != null) {
+                      imageSkinGun.src = skinsLevels.displayIcon
+                      return true
+                    }
+                  })
+                }
+              })
+            }
+          } 
+          
         })
 
         painelGuns.appendChild(imageGuns)
@@ -163,11 +184,11 @@ function getGuns() {
       const nameGun = document.createElement('p')
       nameGun.textContent = element.displayName
       nameGun.classList.add('text-lg')
-      
+
       itemGun.appendChild(nameGun)
       listGuns.appendChild(itemGun)
     })
-  }))
+  })
 }
 
 function switchCategorie(id) {
